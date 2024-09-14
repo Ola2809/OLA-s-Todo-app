@@ -1,0 +1,20 @@
+{
+  "name": "todo-express-mongodb",
+  "version": "1.0.0",
+  "description": "A simple Todo CRUD application using Express and MongoDB",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "jest": "^26.6.3"
+  }
+}

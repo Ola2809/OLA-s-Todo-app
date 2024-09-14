@@ -1,0 +1,168 @@
+# Todo CRUD API Documentation
+
+This documentation outlines the endpoints for a simple Todo CRUD (Create, Read, Update, Delete) API.
+
+Base URL: `http://localhost:3000`
+
+## Endpoints
+
+### 1. Create a New Todo
+
+- **Method**: POST
+- **Endpoint**: `/todos`
+- **Body**: 
+  ```json
+  {
+    "title": "string",
+    "completed": boolean
+  }
+  ```
+- **Response**: 
+  - Status Code: 201 (Created)
+  - Body: Created todo object
+
+**Example Request:**
+```http
+POST /todos HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{
+  "title": "Buy groceries",
+  "completed": false
+}
+```
+
+**Example Response:**
+```json
+{
+  "_id": "60a1b2c3d4e5f6g7h8i9j0k1",
+  "title": "Buy groceries",
+  "completed": false
+}
+```
+
+### 2. Get All Todos
+
+- **Method**: GET
+- **Endpoint**: `/todos`
+- **Response**: 
+  - Status Code: 200 (OK)
+  - Body: Array of todo objects
+
+**Example Request:**
+```http
+GET /todos HTTP/1.1
+Host: localhost:3000
+```
+
+**Example Response:**
+```json
+[
+  {
+    "_id": "60a1b2c3d4e5f6g7h8i9j0k1",
+    "title": "Buy groceries",
+    "completed": false
+  },
+  {
+    "_id": "60a1b2c3d4e5f6g7h8i9j0k2",
+    "title": "Finish project",
+    "completed": true
+  }
+]
+```
+
+### 3. Get a Specific Todo
+
+- **Method**: GET
+- **Endpoint**: `/todos/:id`
+- **Response**: 
+  - Status Code: 200 (OK)
+  - Body: Todo object
+
+**Example Request:**
+```http
+GET /todos/60a1b2c3d4e5f6g7h8i9j0k1 HTTP/1.1
+Host: localhost:3000
+```
+
+**Example Response:**
+```json
+{
+  "_id": "60a1b2c3d4e5f6g7h8i9j0k1",
+  "title": "Buy groceries",
+  "completed": false
+}
+```
+
+### 4. Update a Todo
+
+- **Method**: PUT
+- **Endpoint**: `/todos/:id`
+- **Body**: 
+  ```json
+  {
+    "title": "string",
+    "completed": boolean
+  }
+  ```
+- **Response**: 
+  - Status Code: 200 (OK)
+  - Body: Updated todo object
+
+**Example Request:**
+```http
+PUT /todos/60a1b2c3d4e5f6g7h8i9j0k1 HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{
+  "title": "Buy groceries",
+  "completed": true
+}
+```
+
+**Example Response:**
+```json
+{
+  "_id": "60a1b2c3d4e5f6g7h8i9j0k1",
+  "title": "Buy groceries",
+  "completed": true
+}
+```
+
+### 5. Delete a Todo
+
+- **Method**: DELETE
+- **Endpoint**: `/todos/:id`
+- **Response**: 
+  - Status Code: 200 (OK)
+  - Body: Success message
+
+**Example Request:**
+```http
+DELETE /todos/60a1b2c3d4e5f6g7h8i9j0k1 HTTP/1.1
+Host: localhost:3000
+```
+
+**Example Response:**
+```json
+{
+  "message": "Todo deleted successfully"
+}
+```
+
+## Error Handling
+
+In case of errors, the API will return appropriate HTTP status codes along with error messages in the response body.
+
+- 400 Bad Request: When the request body is invalid
+- 404 Not Found: When a specific todo is not found
+- 500 Internal Server Error: For any server-side errors
+
+Example error response:
+```json
+{
+  "error": "Todo not found"
+}
+```
